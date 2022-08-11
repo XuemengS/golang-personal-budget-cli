@@ -75,17 +75,16 @@ func (b *Budget) RemoveItem(description string) {
 func CreateBudget(month time.Month, max float32) (*Budget, error) {
 	var newBudget *Budget
 
-	if len(report) >= 12{
+	if len(report) >= 12 {
 		return nil, errReportIsFull
 	}
 
-	_, hasEntry := report[month]
-	if hasEntry{
+	if _, hasEntry := report[month]; hasEntry{
 		return nil, errDuplicateEntry
 	}
 
 	newBudget = &Budget{Max: max}
-	// var report map[month]*newBudget
+	report[month] = newBudget
 		
 	return newBudget, nil
 }
